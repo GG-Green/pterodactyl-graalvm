@@ -24,11 +24,12 @@ RUN apt-get update -y \
          "linux/amd64")  ARCH=x64  ;; \
          "linux/arm64")  ARCH=aarch64  ;; \
     esac \
-  && curl --retry 3 -Lfso /tmp/graalvm.tar.gz https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-${GRAAL_VERSION}/graalvm-community-jdk-${GRAAL_VERSION}-linux-${ARCH}-full.tar.gz \
+  && curl --retry 3 -Lfso /tmp/graalvm.tar.gz https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-${GRAAL_VERSION}/graalvm-community-jdk-${GRAAL_VERSION}-linux-${ARCH}-bin.tar.gz \
   && mkdir -p /opt/java/graalvm \
   && cd /opt/java/graalvm \
   && tar -xf /tmp/graalvm.tar.gz --strip-components=1 \
   && export PATH="/opt/java/graalvm/bin:$PATH" \
+  && /opt/java/graalvm/bin/gu install python \
   && rm -rf /var/lib/apt/lists/* \
   && rm -rf /tmp/graalvm.tar.gz
 
