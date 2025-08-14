@@ -9,7 +9,7 @@ ARG TARGETPLATFORM
 ARG GRAAL_VERSION=21.0.2
 ARG JAVA_VERSION=21
 # Define the Graal.Python version to download
-ARG GRAALPYTHON_VERSION=21.0.2
+ARG GRAALPYTHON_VERSION=24.2.2
 
 MAINTAINER RikoDEV, <kontakt@riko.dev>
 
@@ -40,7 +40,7 @@ RUN case ${TARGETPLATFORM} in \
           "linux/arm64")   ARCH=aarch64  ;; \
      esac \
   # Download the Graal.Python component from its official release page
-  && curl --retry 3 -Lfso /tmp/graalpython.tar.gz https://github.com/oracle/graalpython/releases/download/graalpython-${GRAALPYTHON_VERSION}/graalpython-${GRAALPYTHON_VERSION}-linux-${ARCH}.tar.gz \
+  && curl --retry 3 -Lfso /tmp/graalpython.tar.gz https://github.com/oracle/graalpython/releases/download/graal-${GRAALPYTHON_VERSION}/graalpy-community-jvm-${GRAALPYTHON_VERSION}-linux-${ARCH}.tar.gz \
   # Extract the Graal.Python files into the GraalVM directory
   && tar -xf /tmp/graalpython.tar.gz --strip-components=1 -C /opt/java/graalvm/languages \
   && rm -rf /tmp/graalpython.tar.gz
