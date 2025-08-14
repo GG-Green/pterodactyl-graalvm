@@ -36,7 +36,7 @@ RUN apt-get update -y \
 
 # Add Graal.Python installation and configuration
 RUN case ${TARGETPLATFORM} in \
-          "linux/amd64")   ARCH=x64  ;; \
+          "linux/amd64")   ARCH=amd64  ;; \
           "linux/arm64")   ARCH=aarch64  ;; \
      esac \
   # Download the Graal.Python component from its official release page
