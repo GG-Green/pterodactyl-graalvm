@@ -1,10 +1,14 @@
 name: build graalvm
 
 on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 1 * *"
   push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+    branches:
+      - master
+    paths:
+      - 21-JDK/**
 
 jobs:
   pterodactyl-graalvm:
@@ -63,4 +67,5 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta_graalvm.outputs.tags }}
+
           labels: ${{ steps.meta_graalvm.outputs.labels }}
